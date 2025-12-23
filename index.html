@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bryan Garrison | Engineer & Writer</title>
+    <meta name="description" content="Personal website and digital garden of Bryan Garrison.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts: Inter (UI) and Merriweather (Reading) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9', // Sky blue - feels airy like cloud/network
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        },
+                        obsidian: {
+                            800: '#202020', // Dark theme background match
+                            900: '#161616',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Custom scrollbar for a "tech" feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 4px;
+        }
+        .dark ::-webkit-scrollbar-thumb {
+            background-color: #475569;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-obsidian-900 dark:text-slate-200 transition-colors duration-300 flex flex-col min-h-screen font-sans">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-slate-50/80 dark:bg-obsidian-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo / Name -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+                        <i data-lucide="terminal-square" class="w-6 h-6 text-brand-600 dark:text-brand-500"></i>
+                        <span>Bryan Garrison</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden sm:flex sm:items-center sm:space-x-8">
+                    <a href="#" class="text-sm font-medium hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Digital Garden</a>
+                    <a href="#about" class="text-sm font-medium hover:text-brand-600 dark:hover:text-brand-400 transition-colors">About</a>
+                    <a href="#projects" class="text-sm font-medium hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Projects</a>
+                    
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors" aria-label="Toggle Dark Mode">
+                        <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+                        <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex items-center sm:hidden gap-4">
+                     <button id="theme-toggle-mobile" class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+                        <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+                        <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="p-2 rounded-md text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden sm:hidden bg-white dark:bg-obsidian-800 border-b border-slate-200 dark:border-slate-700">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-700">Digital Garden</a>
+                <a href="#about" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-700">About</a>
+                <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-700">Projects</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Wrapper -->
+    <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+
+        <!-- Hero Section -->
+        <section class="mb-20">
+            <div class="flex flex-col md:flex-row gap-8 items-start md:items-center">
+                <div class="flex-1 space-y-4">
+                    <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-brand-100 text-brand-900 dark:bg-brand-900/30 dark:text-brand-100">
+                        <span class="w-2 h-2 rounded-full bg-green-500 mr-2 animate-pulse"></span>
+                        Open to new connections
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl font-bold tracking-tight text-slate-900 dark:text-white font-serif">
+                        Architecting solutions, <br /> Exploring theology.
+                    </h1>
+                    <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed max-w-2xl">
+                        I'm <strong>Bryan Garrison</strong>, a Senior Engineer & Solutions Architect based in Northeast Texas. 
+                        I specialize in networking and Microsoft 365 for non-profits. 
+                        This is my digital garden where I cultivate notes on technology, Python, and the Orthodox faith.
+                    </p>
+                    <div class="pt-4 flex gap-4">
+                        <a href="#garden" class="inline-flex items-center px-5 py-2.5 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-brand-600 hover:bg-brand-700 transition-all">
+                            Read Notes
+                            <i data-lucide="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </a>
+                        <a href="https://github.com" target="_blank" class="inline-flex items-center px-5 py-2.5 border border-slate-300 dark:border-slate-600 text-sm font-medium rounded-md text-slate-700 dark:text-slate-300 bg-white dark:bg-transparent hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+                            <i data-lucide="github" class="mr-2 w-4 h-4"></i>
+                            GitHub
+                        </a>
+                    </div>
+                </div>
+                <!-- Optional: Avatar/Image Placeholder -->
+                <div class="hidden md:block w-48 h-48 flex-shrink-0 relative">
+                    <div class="absolute inset-0 bg-brand-200 dark:bg-brand-900/50 rounded-2xl rotate-3"></div>
+                    <div class="absolute inset-0 bg-slate-200 dark:bg-slate-800 rounded-2xl -rotate-2 flex items-center justify-center overflow-hidden shadow-lg border border-white dark:border-slate-700">
+                         <!-- Replace src with your actual image -->
+                         <i data-lucide="user" class="w-16 h-16 text-slate-400"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="border-slate-200 dark:border-slate-800 my-12">
+
+        <!-- Digital Garden / Recent Posts Section -->
+        <section id="garden">
+            <div class="flex justify-between items-baseline mb-8">
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                    <i data-lucide="sprout" class="w-6 h-6 text-green-600 dark:text-green-500"></i>
+                    Fresh from Obsidian
+                </h2>
+                <a href="#" class="text-sm font-medium text-brand-600 dark:text-brand-400 hover:underline">View archive &rarr;</a>
+            </div>
+
+            <!-- Grid of Cards -->
+            <div class="grid gap-6 md:grid-cols-2">
+                
+                <!-- Card 1: Technical -->
+                <article class="group bg-white dark:bg-obsidian-800 rounded-xl p-6 shadow-sm ring-1 ring-slate-200 dark:ring-slate-700 hover:shadow-md hover:ring-brand-500 dark:hover:ring-brand-500 transition-all duration-300">
+                    <div class="flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400 mb-3">
+                        <span class="bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded text-slate-600 dark:text-slate-300">Networking</span>
+                        <span>•</span>
+                        <time>Sep 24, 2025</time>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-2 group-hover:text-brand-600 dark:group-hover:text-brand-400">
+                        <a href="#">SonicWall DPI-SSL Best Practices</a>
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                        Troubleshooting certificate issues when deploying Deep Packet Inspection on guest networks. Notes on handling exclusions for specific streaming services...
+                    </p>
+                    <div class="flex items-center text-brand-600 dark:text-brand-400 text-sm font-medium">
+                        Read more <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
+                    </div>
+                </article>
+
+                <!-- Card 2: Personal/Zettelkasten -->
+                <article class="group bg-white dark:bg-obsidian-800 rounded-xl p-6 shadow-sm ring-1 ring-slate-200 dark:ring-slate-700 hover:shadow-md hover:ring-brand-500 dark:hover:ring-brand-500 transition-all duration-300">
+                     <div class="flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400 mb-3">
+                        <span class="bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded text-slate-600 dark:text-slate-300">Meta</span>
+                        <span>•</span>
+                        <time>Sep 20, 2025</time>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-2 group-hover:text-brand-600 dark:group-hover:text-brand-400">
+                        <a href="#">Refining the Zettelkasten Workflow</a>
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                        Moving away from strict folders and embracing MOCs (Maps of Content). How I'm linking theology notes with historical context using Obsidian...
+                    </p>
+                    <div class="flex items-center text-brand-600 dark:text-brand-400 text-sm font-medium">
+                        Read more <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
+                    </div>
+                </article>
+
+                <!-- Card 3: Theology -->
+                <article class="group bg-white dark:bg-obsidian-800 rounded-xl p-6 shadow-sm ring-1 ring-slate-200 dark:ring-slate-700 hover:shadow-md hover:ring-brand-500 dark:hover:ring-brand-500 transition-all duration-300">
+                     <div class="flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400 mb-3">
+                        <span class="bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded text-slate-600 dark:text-slate-300">Theology</span>
+                        <span>•</span>
+                        <time>Sep 15, 2025</time>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-2 group-hover:text-brand-600 dark:group-hover:text-brand-400">
+                        <a href="#">Patristic Perspectives on Time</a>
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                        A comparative look at St. Augustine's *Confessions* and Eastern Orthodox views on Kairos vs. Chronos. Thoughts from my recent reading...
+                    </p>
+                    <div class="flex items-center text-brand-600 dark:text-brand-400 text-sm font-medium">
+                        Read more <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
+                    </div>
+                </article>
+
+                <!-- Card 4: Python -->
+                <article class="group bg-white dark:bg-obsidian-800 rounded-xl p-6 shadow-sm ring-1 ring-slate-200 dark:ring-slate-700 hover:shadow-md hover:ring-brand-500 dark:hover:ring-brand-500 transition-all duration-300">
+                     <div class="flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400 mb-3">
+                        <span class="bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded text-slate-600 dark:text-slate-300">Python</span>
+                        <span>•</span>
+                        <time>Sep 10, 2025</time>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-2 group-hover:text-brand-600 dark:group-hover:text-brand-400">
+                        <a href="#">Automating M365 User Onboarding</a>
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4">
+                        A python script using Graph API to standardize license assignment for church volunteers vs staff. Code snippet included...
+                    </p>
+                    <div class="flex items-center text-brand-600 dark:text-brand-400 text-sm font-medium">
+                        Read more <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="mt-20">
+            <div class="bg-slate-100 dark:bg-slate-800/50 rounded-2xl p-8 md:p-12">
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-6 font-serif">About Me</h2>
+                <div class="prose dark:prose-invert max-w-none text-slate-600 dark:text-slate-300">
+                    <p class="mb-4">
+                        I live on 3 acres in northeast Texas with my wife and four kids. By day, I serve churches and non-profits nationwide as a Solutions Architect for an MSP. I primarily focus on network infrastructure (Ruckus/SonicWall) and the Microsoft 365 ecosystem.
+                    </p>
+                    <p class="mb-4">
+                        Academically, I hold degrees in Biblical Studies and Apologetics from Liberty University, though my theological home is in the Eastern Orthodox tradition. I have a deep love for comparative religion and the intersection of ancient faith and modern life.
+                    </p>
+                    <p>
+                        I use <a href="https://obsidian.md" class="text-brand-600 dark:text-brand-400 hover:underline">Obsidian</a> to manage my knowledge using the Zettelkasten method. This site is an attempt to "learn in public" and share the connections I make between technology, theology, and family life.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white dark:bg-obsidian-900 border-t border-slate-200 dark:border-slate-800 mt-auto">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-500 dark:text-slate-400 text-sm">
+                    &copy; 2025 Bryan Garrison. Built with Python & Obsidian.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+                        <span class="sr-only">Twitter</span>
+                        <i data-lucide="twitter" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+                        <span class="sr-only">LinkedIn</span>
+                        <i data-lucide="linkedin" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+                        <span class="sr-only">RSS</span>
+                        <i data-lucide="rss" class="w-5 h-5"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Dark Mode Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeToggleBtnMobile = document.getElementById('theme-toggle-mobile');
+        const htmlElement = document.documentElement;
+
+        // Check local storage or system preference
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+        } else {
+            htmlElement.classList.remove('dark');
+        }
+
+        function toggleTheme() {
+            htmlElement.classList.toggle('dark');
+            if (htmlElement.classList.contains('dark')) {
+                localStorage.theme = 'dark';
+            } else {
+                localStorage.theme = 'light';
+            }
+        }
+
+        themeToggleBtn.addEventListener('click', toggleTheme);
+        themeToggleBtnMobile.addEventListener('click', toggleTheme);
+
+        // Mobile Menu Logic
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
