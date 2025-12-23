@@ -1,0 +1,239 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Garden | Bryan Garrison</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        },
+                        obsidian: {
+                            800: '#202020',
+                            900: '#161616',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-obsidian-900 dark:text-slate-200 transition-colors duration-300 flex flex-col min-h-screen font-sans">
+
+
+     <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-slate-50/80 dark:bg-obsidian-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo / Name -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+                        <i data-lucide="terminal-square" class="w-6 h-6 text-brand-600 dark:text-brand-500"></i>
+                        <span>Bryan Garrison</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden sm:flex sm:items-center sm:space-x-8">
+                    <a href="notes.html" class="text-sm font-medium hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Notes</a>
+                    <a href="about.html" class="text-sm font-medium hover:text-brand-600 dark:hover:text-brand-400 transition-colors">About</a>
+                    <a href="projects.html" class="text-sm font-medium hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Projects</a>
+                    <a href="now.html" class="text-sm font-medium hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Now</a>
+					
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors" aria-label="Toggle Dark Mode">
+                        <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+                        <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex items-center sm:hidden gap-4">
+                     <button id="theme-toggle-mobile" class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+                        <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+                        <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="p-2 rounded-md text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden sm:hidden bg-white dark:bg-obsidian-800 border-b border-slate-200 dark:border-slate-700">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="notes.html" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-700">Notes</a>
+                <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-700">About</a>
+                <a href="projects.html" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-700">Projects</a>
+				<a href="now.html" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-700">Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+	
+	
+	
+        <!-- Intro Header -->
+        <header class="mb-12">
+            <h1 class="text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white font-serif mb-6 leading-tight">
+                Engineer, Writer, & <br/> <span class="text-brand-600 dark:text-brand-500">Orthodox Christian.</span>
+            </h1>
+            <p class="text-lg text-slate-600 dark:text-slate-400 leading-relaxed font-serif italic">
+                "Learning in public from a homestead in Northeast Texas."
+            </p>
+        </header>
+
+        <hr class="border-slate-200 dark:border-slate-800 mb-12">
+
+        <!-- Main Prose -->
+        <div class="prose prose-slate dark:prose-invert max-w-none">
+            
+            <section class="mb-16">
+                <div class="flex items-center gap-3 mb-4">
+                    <i data-lucide="network" class="w-6 h-6 text-brand-600 dark:text-brand-400"></i>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white m-0">The Engineer</h2>
+                </div>
+                <p>
+                    By trade, I am a Solutions Architect for a nationwide MSP. My work primarily serves churches and non-profit organizations, helping them navigate the complexities of modern IT without losing sight of their mission.
+                </p>
+                <p>
+                    My technical world revolves around the edge and the cloud—specifically <strong>networking</strong> and <strong>Microsoft 365</strong>. I don't deal much with bare-metal servers anymore; my clients have moved on.
+                </p>
+                <ul class="not-prose grid grid-cols-1 sm:grid-cols-2 gap-3 my-6">
+                    <li class="flex items-center gap-2 text-sm bg-white dark:bg-slate-800 p-3 rounded-lg border border-slate-200 dark:border-slate-700">
+                        <i data-lucide="shield-check" class="w-4 h-4 text-green-500"></i>
+                        <span><strong>SonicWall</strong> Firewalls</span>
+                    </li>
+                    <li class="flex items-center gap-2 text-sm bg-white dark:bg-slate-800 p-3 rounded-lg border border-slate-200 dark:border-slate-700">
+                        <i data-lucide="wifi" class="w-4 h-4 text-blue-500"></i>
+                        <span><strong>Ruckus</strong> Wireless & Switching</span>
+                    </li>
+                    <li class="flex items-center gap-2 text-sm bg-white dark:bg-slate-800 p-3 rounded-lg border border-slate-200 dark:border-slate-700">
+                        <i data-lucide="cloud" class="w-4 h-4 text-sky-500"></i>
+                        <span><strong>Azure / Entra</strong> Identity</span>
+                    </li>
+                    <li class="flex items-center gap-2 text-sm bg-white dark:bg-slate-800 p-3 rounded-lg border border-slate-200 dark:border-slate-700">
+                        <i data-lucide="code-2" class="w-4 h-4 text-yellow-500"></i>
+                        <span><strong>Python</strong> Automation</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="mb-16">
+                <div class="flex items-center gap-3 mb-4">
+                    <i data-lucide="book-open" class="w-6 h-6 text-brand-600 dark:text-brand-400"></i>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white m-0">The Theologian</h2>
+                </div>
+                <p>
+                    While my hands work on networks, my mind often dwells on the ancient faith. I hold degrees in <strong>Biblical Studies</strong> and <strong>Apologetics</strong> from Liberty University. 
+                </p>
+                <p>
+                    My spiritual home is in the <strong>Eastern Orthodox</strong> tradition. I have a deep love for comparative religion and exploring how patristic theology intersects with our modern, digital lives. Much of my writing explores this tension—how to live an ancient faith in a high-tech world.
+                </p>
+            </section>
+
+            <section class="mb-16">
+                <div class="flex items-center gap-3 mb-4">
+                    <i data-lucide="sprout" class="w-6 h-6 text-brand-600 dark:text-brand-400"></i>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white m-0">The Gardener</h2>
+                </div>
+                <p>
+                    This website is a <strong>Digital Garden</strong>. Unlike a blog, which is a stream of finished articles sorted by date, a garden is a collection of evolving notes.
+                </p>
+                <p>
+                    I use <a href="https://obsidian.md" target="_blank" class="text-brand-600 dark:text-brand-400 no-underline hover:underline">Obsidian</a> and the <strong>Zettelkasten</strong> method to manage my knowledge. The notes you see here are exported directly from my personal vault. They might be incomplete, they might be rough, but they are growing.
+                </p>
+            </section>
+
+            <section>
+                <div class="flex items-center gap-3 mb-4">
+                    <i data-lucide="home" class="w-6 h-6 text-brand-600 dark:text-brand-400"></i>
+                    <h2 class="text-2xl font-bold text-slate-900 dark:text-white m-0">The Personal</h2>
+                </div>
+                <p>
+                    I live on 3 acres in <strong>Northeast Texas</strong> with my wife and our four children. When I'm not architecting networks or writing notes, I'm likely tending to the land or enjoying the chaos of a large family.
+                </p>
+            </section>
+
+        </div>
+
+	
+	</main>
+
+       <!-- Footer -->
+    <footer class="bg-white dark:bg-obsidian-900 border-t border-slate-200 dark:border-slate-800 mt-auto">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-500 dark:text-slate-400 text-sm">
+                    &copy; 2025 Bryan Garrison.
+                </p>
+                <!-- <div class="flex space-x-6">
+                    <a href="#" class="text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+                        <span class="sr-only">Twitter</span>
+                        <i data-lucide="twitter" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+                        <span class="sr-only">LinkedIn</span>
+                        <i data-lucide="linkedin" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+                        <span class="sr-only">RSS</span>
+                        <i data-lucide="rss" class="w-5 h-5"></i>
+                    </a>
+                </div> -->
+            </div>
+        </div>
+    </footer>
+	
+	<script>
+        lucide.createIcons();
+
+        // Dark Mode Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+        } else {
+            htmlElement.classList.remove('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            localStorage.theme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
+        });
+    </script>
+	
+</body>
+</html>

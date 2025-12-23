@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Garden | Bryan Garrison</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Merriweather:ital,wght@0,300;0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            900: '#0c4a6e',
+                        },
+                        obsidian: {
+                            800: '#202020',
+                            900: '#161616',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-obsidian-900 dark:text-slate-200 transition-colors duration-300 flex flex-col min-h-screen font-sans">
+
+     <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-slate-50/80 dark:bg-obsidian-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo / Name -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
+                        <i data-lucide="terminal-square" class="w-6 h-6 text-brand-600 dark:text-brand-500"></i>
+                        <span>Bryan Garrison</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden sm:flex sm:items-center sm:space-x-8">
+                    <a href="notes.html" class="text-sm font-medium hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Notes</a>
+                    <a href="about.html" class="text-sm font-medium hover:text-brand-600 dark:hover:text-brand-400 transition-colors">About</a>
+                    <a href="projects.html" class="text-sm font-medium hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Projects</a>
+                    <a href="now.html" class="text-sm font-medium hover:text-brand-600 dark:hover:text-brand-400 transition-colors">Now</a>
+					
+                    <!-- Theme Toggle -->
+                    <button id="theme-toggle" class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors" aria-label="Toggle Dark Mode">
+                        <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+                        <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="flex items-center sm:hidden gap-4">
+                     <button id="theme-toggle-mobile" class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors">
+                        <i data-lucide="moon" class="w-5 h-5 hidden dark:block"></i>
+                        <i data-lucide="sun" class="w-5 h-5 block dark:hidden"></i>
+                    </button>
+                    <button id="mobile-menu-btn" class="p-2 rounded-md text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden sm:hidden bg-white dark:bg-obsidian-800 border-b border-slate-200 dark:border-slate-700">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="notes.html" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-700">Notes</a>
+                <a href="about.html" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-700">About</a>
+                <a href="projects.html" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-700">Projects</a>
+				<a href="now.html" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-slate-100 dark:hover:bg-slate-700">Now</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+
+        <!-- Header & Search -->
+        <header class="mb-12 text-center sm:text-left">
+            <h1 class="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white font-serif mb-4">
+                The Digital Garden
+            </h1>
+            <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mb-8">
+                A collection of interconnected notes on network engineering, theology, and the Zettelkasten method.
+            </p>
+
+            <!-- Search & Filter Controls -->
+            <div class="flex flex-col sm:flex-row gap-4 items-center justify-between">
+                
+                <!-- Search Input -->
+                <div class="relative w-full sm:max-w-xs group">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <i data-lucide="search" class="h-5 w-5 text-slate-400 group-focus-within:text-brand-500 transition-colors"></i>
+                    </div>
+                    <input type="text" id="searchInput" 
+                           class="block w-full pl-10 pr-3 py-2 border border-slate-300 dark:border-slate-700 rounded-lg leading-5 bg-white dark:bg-obsidian-800 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-brand-500 sm:text-sm transition-all shadow-sm" 
+                           placeholder="Search notes...">
+                </div>
+
+                <!-- <!-- Category Filters -->
+                <!-- <div class="flex flex-wrap gap-2 justify-center sm:justify-end" id="filterContainer">
+                    <button class="filter-btn active px-3 py-1.5 rounded-full text-xs font-medium bg-brand-100 text-brand-900 dark:bg-brand-900 dark:text-brand-100 ring-1 ring-brand-200 dark:ring-brand-700 transition-all" data-filter="all">
+                        All
+                    </button>
+                    <button class="filter-btn px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700 transition-all" data-filter="Networking">
+                        Networking
+                    </button>
+                    <button class="filter-btn px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700 transition-all" data-filter="Theology">
+                        Theology
+                    </button>
+                    <button class="filter-btn px-3 py-1.5 rounded-full text-xs font-medium bg-slate-100 text-slate-600 hover:bg-slate-200 dark:bg-slate-800 dark:text-slate-400 dark:hover:bg-slate-700 transition-all" data-filter="Python">
+                        Python
+                    </button>
+                </div> -->
+            </div>
+        </header>
+
+        <!-- Notes Grid -->
+        <!-- Add new notes here. The JS will automatically handle the filtering based on the 'data-category' attribute. -->
+        <div id="notesGrid" class="grid gap-6 md:grid-cols-2">
+
+            <!-- Card 1: Networking -->
+            <article class="note-card group bg-white dark:bg-obsidian-800 rounded-xl shadow-sm ring-1 ring-slate-200 dark:ring-slate-700 hover:shadow-md hover:ring-brand-500 dark:hover:ring-brand-500 transition-all duration-300 flex flex-col overflow-hidden" data-category="Networking">
+                <!-- Hero Image -->
+                <div class="aspect-video w-full overflow-hidden bg-gray-100 dark:bg-gray-700 border-b border-gray-100 dark:border-gray-700 relative">
+                     <img src="https://images.unsplash.com/photo-1544197150-b99a580bbc7c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Server Rack">
+                </div>
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400 mb-3">
+                        <span class="bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded text-slate-600 dark:text-slate-300">Networking</span>
+                        <span>•</span>
+                        <time>Sep 24, 2025</time>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-2 group-hover:text-brand-600 dark:group-hover:text-brand-400">
+                        <a href="#">SonicWall DPI-SSL Best Practices</a>
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4 flex-grow">
+                        Troubleshooting certificate issues when deploying Deep Packet Inspection on guest networks.
+                    </p>
+                    <div class="flex items-center text-brand-600 dark:text-brand-400 text-sm font-medium mt-auto">
+                        Read more <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Card 2: Theology (No Image Example) -->
+            <article class="note-card group bg-white dark:bg-obsidian-800 rounded-xl shadow-sm ring-1 ring-slate-200 dark:ring-slate-700 hover:shadow-md hover:ring-brand-500 dark:hover:ring-brand-500 transition-all duration-300 flex flex-col overflow-hidden" data-category="Theology">
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400 mb-3">
+                        <span class="bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded text-slate-600 dark:text-slate-300">Theology</span>
+                        <span>•</span>
+                        <time>Sep 15, 2025</time>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-2 group-hover:text-brand-600 dark:group-hover:text-brand-400">
+                        <a href="#">Patristic Perspectives on Time</a>
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4 flex-grow">
+                         A comparative look at St. Augustine's *Confessions* and Eastern Orthodox views on Kairos vs. Chronos.
+                    </p>
+                    <div class="flex items-center text-brand-600 dark:text-brand-400 text-sm font-medium mt-auto">
+                        Read more <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
+                    </div>
+                </div>
+            </article>
+
+             <!-- Card 3: Python -->
+            <article class="note-card group bg-white dark:bg-obsidian-800 rounded-xl shadow-sm ring-1 ring-slate-200 dark:ring-slate-700 hover:shadow-md hover:ring-brand-500 dark:hover:ring-brand-500 transition-all duration-300 flex flex-col overflow-hidden" data-category="Python">
+                <div class="p-6 flex flex-col flex-grow">
+                    <div class="flex items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400 mb-3">
+                        <span class="bg-slate-100 dark:bg-slate-700 px-2 py-0.5 rounded text-slate-600 dark:text-slate-300">Python</span>
+                        <span>•</span>
+                        <time>Sep 10, 2025</time>
+                    </div>
+                    <h3 class="text-xl font-semibold text-slate-900 dark:text-white mb-2 group-hover:text-brand-600 dark:group-hover:text-brand-400">
+                        <a href="#">Automating M365 User Onboarding</a>
+                    </h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-4 flex-grow">
+                        A python script using Graph API to standardize license assignment for church volunteers vs staff.
+                    </p>
+                    <div class="flex items-center text-brand-600 dark:text-brand-400 text-sm font-medium mt-auto">
+                        Read more <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+    </main>
+
+       <!-- Footer -->
+    <footer class="bg-white dark:bg-obsidian-900 border-t border-slate-200 dark:border-slate-800 mt-auto">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-slate-500 dark:text-slate-400 text-sm">
+                    &copy; 2025 Bryan Garrison.
+                </p>
+                <!-- <div class="flex space-x-6">
+                    <a href="#" class="text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+                        <span class="sr-only">Twitter</span>
+                        <i data-lucide="twitter" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+                        <span class="sr-only">LinkedIn</span>
+                        <i data-lucide="linkedin" class="w-5 h-5"></i>
+                    </a>
+                    <a href="#" class="text-slate-400 hover:text-brand-600 dark:hover:text-brand-400 transition-colors">
+                        <span class="sr-only">RSS</span>
+                        <i data-lucide="rss" class="w-5 h-5"></i>
+                    </a>
+                </div> -->
+            </div>
+        </div>
+    </footer>
+
+    <!-- Logic for Search, Filtering, and Dark Mode -->
+    <script>
+        lucide.createIcons();
+
+        // --- Dark Mode Setup ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const htmlElement = document.documentElement;
+
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            htmlElement.classList.add('dark');
+        } else {
+            htmlElement.classList.remove('dark');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            htmlElement.classList.toggle('dark');
+            localStorage.theme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
+        });
+
+        // --- Search & Filter Logic ---
+        const searchInput = document.getElementById('searchInput');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.note-card');
+        let currentFilter = 'all';
+
+        // Filter by Category
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button styles
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-brand-100', 'text-brand-900', 'dark:bg-brand-900', 'dark:text-brand-100', 'ring-1', 'ring-brand-200', 'dark:ring-brand-700');
+                    b.classList.add('bg-slate-100', 'text-slate-600', 'dark:bg-slate-800', 'dark:text-slate-400');
+                });
+                btn.classList.remove('bg-slate-100', 'text-slate-600', 'dark:bg-slate-800', 'dark:text-slate-400');
+                btn.classList.add('bg-brand-100', 'text-brand-900', 'dark:bg-brand-900', 'dark:text-brand-100', 'ring-1', 'ring-brand-200', 'dark:ring-brand-700');
+                
+                currentFilter = btn.getAttribute('data-filter');
+                applyFilters();
+            });
+        });
+
+        // Search Text
+        searchInput.addEventListener('keyup', applyFilters);
+
+        function applyFilters() {
+            const term = searchInput.value.toLowerCase();
+
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const excerpt = card.querySelector('p').textContent.toLowerCase();
+                const category = card.getAttribute('data-category');
+                
+                // Check Category
+                const matchesCategory = currentFilter === 'all' || category === currentFilter;
+                
+                // Check Search Term
+                const matchesSearch = title.includes(term) || excerpt.includes(term);
+
+                if (matchesCategory && matchesSearch) {
+                    card.classList.remove('hidden');
+                } else {
+                    card.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
